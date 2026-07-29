@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糸島多肉Lab | ITOSHIMA TANIKU LAB</title>
+<meta name="description" content="福岡県糸島市のハウスで、韓国・中国から輸入した多肉植物(エケベリア)を育成・販売しています。">
+<style>
+  :root {
+    --accent: #2e6b4f;
+    --accent-dark: #1f4d38;
+    --accent-light: #eaf3ee;
+    --bg: #fbfaf7;
+    --text: #2b2b28;
+    --muted: #6b6b64;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Yu Gothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  a { color: var(--accent-dark); }
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(251,250,247,0.95);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid #e4e0d6;
+    z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+  }
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+    letter-spacing: 0.03em;
+  }
+  .logo span { font-weight: 400; font-size: 0.75rem; display: block; color: var(--muted); letter-spacing: 0.1em; }
+  nav a {
+    margin-left: 22px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.92rem;
+  }
+  nav a:hover { color: var(--accent); }
+
+  .hero {
+    text-align: center;
+    padding: 72px 20px 56px;
+    background: linear-gradient(180deg, var(--accent-light), var(--bg));
+  }
+  .hero h1 {
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    margin: 0 0 12px;
+    color: var(--accent-dark);
+  }
+  .hero p {
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 1.02rem;
+  }
+  .hero .badges {
+    margin-top: 22px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: white;
+    border: 1px solid #dcd6c8;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    color: var(--accent-dark);
+  }
+
+  section { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--accent-dark);
+    border-left: 5px solid var(--accent);
+    padding-left: 12px;
+    margin-bottom: 28px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-grid p { color: var(--text); }
+  .info-card {
+    background: white;
+    border: 1px solid #e4e0d6;
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .info-card dl { margin: 0; }
+  .info-card dt { font-size: 0.8rem; color: var(--muted); margin-top: 14px; }
+  .info-card dt:first-child { margin-top: 0; }
+  .info-card dd { margin: 2px 0 0; font-size: 1rem; }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: white;
+    border: 1px solid #e4e0d6;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(46,107,79,0.12); }
+  .card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+  .card .cap {
+    padding: 10px 12px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent-dark);
+  }
+
+  .insta-cta {
+    background: var(--accent);
+    color: white;
+    border-radius: 14px;
+    padding: 40px 30px;
+    text-align: center;
+  }
+  .insta-cta h2 { color: white; border-color: white; }
+  .insta-cta a.btn {
+    display: inline-block;
+    margin-top: 14px;
+    background: white;
+    color: var(--accent-dark);
+    text-decoration: none;
+    padding: 10px 26px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  /* lightbox */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(20,20,18,0.85);
+    display: none; align-items: center; justify-content: center;
+    z-index: 200; padding: 20px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 78vh; border-radius: 8px; }
+  .lightbox .cap { color: white; text-align: center; margin-top: 14px; font-size: 1.1rem; }
+  .lightbox .close {
+    position: absolute; top: 20px; right: 26px; color: white;
+    font-size: 1.8rem; cursor: pointer; background: none; border: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo">糸島多肉Lab<span>ITOSHIMA TANIKU LAB</span></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#instagram">Instagram</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>糸島のハウスで育つ、<br>多肉植物たち。</h1>
+  <p>韓国・中国から届いた苗を、福岡県糸島市のハウスでじっくり育成。<br>常時500種類・5000苗以上のエケベリアをハウス直売&ネット販売でお届けしています。</p>
+  <div class="badges">
+    <span class="badge">🌱 常時500種類以上</span>
+    <span class="badge">📍 福岡県糸島市</span>
+    <span class="badge">🏡 ハウス直売 / ネット販売</span>
+  </div>
+</div>
+
+<section id="about">
+  <h2>About</h2>
+  <div class="about-grid">
+    <p>
+      糸島多肉Labは、韓国・中国から多肉植物(主にエケベリア)の苗を輸入し、自然豊かな糸島のハウスで育てています。
+      交配や実生によるオリジナルエケベリアの栽培にも取り組んでおり、デカべリアや寄せ植えに使うセダムも育成中です。
+      1品種につき10苗ほど栽培しているため、個体ごとの表情や柄、形の違いをハウスで直接見比べてお気に入りの1苗を見つけていただけます。
+      ハウスに来られない方には、状態の良い苗を選んで丁寧に梱包し、ネットでも発送しています。
+    </p>
+    <div class="info-card">
+      <dl>
+        <dt>屋号</dt><dd>糸島多肉Lab (ITOSHIMA TANIKU LAB)</dd>
+        <dt>所在地</dt><dd>福岡県糸島市志摩久家393</dd>
+        <dt>営業時間</dt><dd>10:00〜15:00(休日:土曜日)</dd>
+        <dt>電話</dt><dd>080-5838-6593</dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/itoshimatanikulab/" target="_blank" rel="noopener">@itoshimatanikulab</a></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery" id="galleryGrid"></div>
+</section>
+
+<section id="instagram">
+  <div class="insta-cta">
+    <h2 style="display:inline-block">最新の入荷情報はInstagramで</h2>
+    <p>新規納入苗や日々のハウスの様子は、公式Instagramで随時更新しています。</p>
+    <a class="btn" href="https://www.instagram.com/itoshimatanikulab/" target="_blank" rel="noopener">@itoshimatanikulab を見る</a>
+  </div>
+</section>
+
+<footer>
+  &copy; <span id="year"></span> 糸島多肉Lab (ITOSHIMA TANIKU LAB)
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="close" id="lightboxClose">&times;</button>
+  <div>
+    <img id="lightboxImg" src="" alt="">
+    <div class="cap" id="lightboxCap"></div>
+  </div>
+</div>
+
+<script>
+  // ---- Plant data: slug -> variety name ----
+  // NOTE: This list is regenerated automatically whenever new photos are
+  // added to the source folder. See README for the update workflow.
+  const PLANTS = {
+    "plant01": "アイリーオ",
+    "plant02": "エリークィーン",
+    "plant03": "オオゴマダラジカ",
+    "plant04": "オリビア",
+    "plant05": "クィーンローズ",
+    "plant06": "グリーンペッパー×アガボイデス",
+    "plant07": "サザエ",
+    "plant08": "シャルモン",
+    "plant09": "スポットサーダビエ",
+    "plant10": "ダマンサラ",
+    "plant11": "ダークアイス",
+    "plant12": "チャオナイ",
+    "plant13": "チャームレディ",
+    "plant14": "ヒアリナ×アガボイデス",
+    "plant15": "ヒアリナ×ソウル",
+    "plant16": "ピンククリスタルアンバー",
+    "plant17": "フェンディ",
+    "plant18": "ブラックスワン",
+    "plant19": "ブルーバード",
+    "plant20": "ベビーフィンガーhyb",
+    "plant21": "ポセイドン",
+    "plant22": "マリベル",
+    "plant23": "メキシコミニマ",
+    "plant24": "モヒカン",
+    "plant25": "リウツァイ",
+    "plant26": "レッドザラゴーサ",
+    "plant27": "レッドベルベット",
+    "plant28": "レッドホール",
+    "plant29": "ロココ",
+    "plant30": "ローエン",
+    "plant31": "小苗",
+    "plant32": "海王",
+    "plant33": "象牙",
+    "plant34": "雲台"
+  };
+
+  const grid = document.getElementById('galleryGrid');
+  Object.entries(PLANTS).forEach(([slug, name]) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<img src="${slug}.jpg" alt="${name}" loading="lazy"><div class="cap">${name}</div>`;
+    card.addEventListener('click', () => openLightbox(`${slug}.jpg`, name));
+    grid.appendChild(card);
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCap = document.getElementById('lightboxCap');
+  function openLightbox(src, name) {
+    lightboxImg.src = src;
+    lightboxCap.textContent = name;
+    lightbox.classList.add('open');
+  }
+  document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
