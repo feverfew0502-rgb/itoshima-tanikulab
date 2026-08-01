@@ -18,7 +18,7 @@
     theme: {
       extend: {
         colors: {
-          navy: { DEFAULT: '#16324a', dark: '#0d2136', light: '#264a68' },
+          navy: { DEFAULT: '#1c5fa8', dark: '#0d2136', light: '#4a86c9' },
           cream: '#f3f1ea',
           mustard: '#f0c43b',
           orange: '#e8734a',
@@ -40,6 +40,7 @@
   body { font-family: 'Noto Sans JP', sans-serif; }
   .font-zen { font-family: 'Zen Kaku Gothic New', sans-serif; }
   #lightbox.open { display: flex; }
+  .vertical-rl { writing-mode: vertical-rl; }
   .outline-text {
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-weight: 900;
@@ -53,14 +54,36 @@
   }
 </style>
 </head>
-<body class="bg-cream text-navy-dark leading-relaxed font-sans">
+<body class="relative bg-cream text-navy-dark leading-relaxed font-sans">
+
+<!-- Decorative side rails (bluefarm-inspired editorial touch) -->
+<div class="hidden lg:flex fixed top-32 left-3 z-40 flex-col items-center gap-2 pointer-events-none select-none">
+  <span class="vertical-rl font-zen font-black text-sm tracking-widest text-mustard">SUCCULENTS</span>
+  <span class="w-px h-6 bg-navy/20"></span>
+  <span class="vertical-rl font-zen font-black text-sm tracking-widest text-navy">ITOSHIMA</span>
+  <span class="w-px h-6 bg-navy/20"></span>
+  <span class="vertical-rl font-zen font-black text-sm tracking-widest text-orange">GREENHOUSE</span>
+</div>
+<div class="hidden lg:flex fixed top-32 right-3 z-40 flex-col items-center gap-3">
+  <span class="vertical-rl font-zen font-bold text-xs tracking-widest text-navy/60 pointer-events-none select-none">FOLLOW US</span>
+  <a href="https://www.instagram.com/itoshimatanikulab/" target="_blank" rel="noopener"
+     class="w-9 h-9 rounded-full bg-white shadow flex items-center justify-center text-orange hover:bg-orange hover:text-white transition-colors" aria-label="Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  </a>
+</div>
+
+<!-- Decorative background illustrations along the edges (repeated by JS to cover full page height) -->
+<div id="bgIlluRight" class="hidden lg:flex absolute top-0 right-0 w-56 xl:w-72 -z-10 flex-col pointer-events-none select-none" aria-hidden="true"></div>
+<div id="bgIlluLeft" class="hidden lg:flex absolute top-0 left-0 w-56 xl:w-72 -z-10 flex-col pointer-events-none select-none" aria-hidden="true"></div>
 
 <!-- Header -->
-<header class="sticky top-0 z-50 bg-cream/95 backdrop-blur border-b border-navy/15">
+<header class="sticky top-0 z-50 bg-[#e8e1d0]/95 backdrop-blur border-b border-navy/15">
   <div class="max-w-6xl mx-auto flex items-center justify-between px-5 py-4">
     <div class="font-zen font-900">
-      <div class="text-xl font-black text-navy tracking-wide leading-none">糸島多肉Lab</div>
-      <div class="text-[0.6rem] text-navy/60 tracking-[0.2em] mt-1">ITOSHIMA TANIKU LAB</div>
+      <div class="text-2xl md:text-4xl font-black text-navy tracking-wide leading-none">糸島多肉Lab</div>
+      <div class="text-[0.6rem] text-navy-dark/70 tracking-[0.2em] mt-1">ITOSHIMA TANIKU LAB</div>
     </div>
     <nav class="hidden md:flex items-center gap-8 text-sm font-zen font-medium text-navy">
       <a href="#about" class="hover:text-orange transition-colors">私たちについて</a>
@@ -91,7 +114,7 @@
   <div class="grid md:grid-cols-2 gap-12 items-center">
     <div data-aos="fade-up">
       <p class="font-zen font-bold text-orange text-sm mb-3 tracking-wide">福岡県糸島市 ｜ ハウス直売 / ネット通販</p>
-      <h1 class="font-zen font-black text-3xl md:text-5xl leading-snug text-navy mb-6">
+      <h1 class="font-zen font-black text-2xl md:text-4xl leading-snug text-navy mb-6">
         糸島のハウスで育つ、<br>多肉植物たち。
       </h1>
       <div class="flex items-center gap-3 mb-6 text-navy/50">
@@ -104,8 +127,9 @@
       </p>
       <div class="flex flex-wrap gap-3 mb-8">
         <a href="https://www.instagram.com/itoshimatanikulab/" target="_blank" rel="noopener"
-           class="inline-flex items-center gap-2 bg-orange hover:bg-navy text-white px-6 py-3 rounded-full font-zen font-bold shadow-sm transition-colors">
+           class="group inline-flex items-center gap-3 bg-orange hover:bg-navy text-white pl-6 pr-2 py-2 rounded-full font-zen font-bold shadow-sm transition-colors">
           Instagramを見る
+          <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">→</span>
         </a>
         <a href="tel:08058386593"
            class="inline-flex items-center gap-2 border-2 border-navy text-navy px-6 py-3 rounded-full font-zen font-bold hover:bg-navy hover:text-cream transition-colors">
@@ -122,8 +146,8 @@
     <div class="grid grid-cols-3 grid-rows-3 gap-3 md:gap-4 h-[420px] md:h-[520px]" data-aos="fade-up" data-aos-delay="150">
       <div class="relative col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-lg">
         <!-- heroNewPhoto: 自動更新でInstagram最新投稿の写真に差し替える対象。src属性のみを書き換えること -->
-        <img id="heroNewPhoto" src="images/plant41.jpg" alt="エケベリア" class="w-full h-full object-cover">
-        <span class="absolute bottom-3 left-3 bg-mustard text-navy-dark text-xs font-black px-3 py-1 rounded-full shadow">🌱 NEW</span>
+        <img id="heroNewPhoto" src="images/plant42.jpg" alt="エケベリア" class="w-full h-full object-cover">
+        <span class="absolute bottom-3 left-3 bg-mustard text-navy-dark text-xs font-zen font-black tracking-widest px-3 py-1 rounded-md shadow">NEW</span>
       </div>
       <img src="images/plant18.jpg" alt="エケベリア" class="w-full h-full object-cover rounded-2xl shadow-lg">
       <img src="images/plant09.jpg" alt="エケベリア" class="w-full h-full object-cover rounded-2xl shadow-lg">
@@ -131,6 +155,25 @@
       <img src="images/plant31.jpg" alt="エケベリア" class="w-full h-full object-cover rounded-2xl shadow-lg">
       <img src="images/plant15.jpg" alt="エケベリア" class="w-full h-full object-cover rounded-2xl shadow-lg">
     </div>
+  </div>
+</section>
+
+<!-- Information -->
+<section id="information" class="max-w-6xl mx-auto px-5 pt-16 md:pt-20">
+  <p class="font-zen font-bold text-orange text-sm mb-2" data-aos="fade-up">お知らせ</p>
+  <h2 class="outline-text text-navy text-5xl md:text-7xl mb-8" data-aos="fade-up">INFORMATION</h2>
+  <div class="bg-white rounded-3xl shadow-sm p-7 md:p-10 text-navy/80 space-y-4 font-medium leading-relaxed" data-aos="fade-up">
+    <p class="font-bold text-navy">今年も夏の営業スタイルを変更します。</p>
+    <p>7月から9月末までの期間、午前中はハウスに滞在しておりますので、ご予約なしで来店いただいて構いません。</p>
+    <p>
+      12時から15時までは予約をお願い致します。<br>
+      電話 <a href="tel:08058386593" class="text-orange font-bold hover:underline">080-5838-6593</a><br>
+      もしくは予約フォーム：<a href="https://airrsv.net/itoshimatanikulab/calendar" target="_blank" rel="noopener" class="text-orange font-bold hover:underline break-all">https://airrsv.net/itoshimatanikulab/calendar</a>
+    </p>
+    <p>
+      ハウス内は換気しているとはいえ外気よりかなり暑くなります。<br>
+      熱中症対策をして、ご来店いただきますようお願い致します🙇
+    </p>
   </div>
 </section>
 
@@ -211,9 +254,9 @@
     <h2 class="outline-text solid-on-dark text-5xl md:text-7xl mb-6">INSTAGRAM</h2>
     <p class="text-cream/80 max-w-md mx-auto mb-8">新規納入苗や日々のハウスの様子は、公式Instagramで随時更新しています。</p>
     <a href="https://www.instagram.com/itoshimatanikulab/" target="_blank" rel="noopener"
-       class="inline-flex items-center gap-2 bg-orange hover:bg-mustard hover:text-navy-dark text-white font-zen font-bold px-8 py-3 rounded-full shadow-md transition-colors">
+       class="group inline-flex items-center gap-3 bg-orange hover:bg-mustard hover:text-navy-dark text-white pl-8 pr-2 py-2 rounded-full font-zen font-bold shadow-md transition-colors">
       @itoshimatanikulab を見る
-      <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">→</span>
+      <span class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">→</span>
     </a>
   </div>
 </section>
@@ -244,7 +287,7 @@
     "plant09","plant10","plant11","plant12","plant13","plant14","plant15","plant16",
     "plant17","plant18","plant19","plant20","plant21","plant22","plant23","plant24",
     "plant25","plant26","plant27","plant28","plant29","plant30","plant31","plant32",
-    "plant33","plant34","plant40","plant41"
+    "plant33","plant34","plant40","plant41","plant42"
   ];
 
   const BADGE_STYLES = [
@@ -261,7 +304,7 @@
     card.innerHTML = `
       <div class="relative aspect-square rounded-2xl overflow-hidden shadow-sm bg-white">
         <img src="images/${slug}.jpg" alt="多肉植物" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-        <span class="absolute bottom-2 right-2 ${badge} text-[0.65rem] font-bold px-2.5 py-1 rounded-full shadow">🌱</span>
+        <span class="absolute bottom-2 left-2 ${badge} text-[0.6rem] font-zen font-black tracking-widest px-2.5 py-1 rounded-md shadow">PLANT</span>
       </div>`;
     card.addEventListener('click', () => openLightbox(`images/${slug}.jpg`));
     grid.appendChild(card);
@@ -291,6 +334,60 @@
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- Decorative background illustrations: repeat down the full page height ----
+  (function fillBgIllustrations() {
+    const SLOT_CLASS = 'w-full h-56 xl:h-72 object-contain shrink-0';
+    // Fixed left/right order matching the original 1〜10 alternating layout.
+    const SEQUENCE = [
+      { file: 'rosette_outline-thick-white.png', side: 'right' },
+      { file: 'spike_outline-thick-white.png', side: 'left' },
+      { file: 'hanging_outline-thick-white.png', side: 'right' },
+      { file: 'fan_outline-thick-white.png', side: 'left' },
+      { file: 'cluster_outline-thick-white.png', side: 'right' },
+      { file: 'cylindrical_outline-thick-white.png', side: 'left' },
+      { file: 'branched_outline-thick-white.png', side: 'right' },
+      { file: 'pilosocereus_outline-thick-white.png', side: 'left' },
+      { file: 'tall-columnar_outline-thick-white.png', side: 'right' },
+      { file: 'unusual_outline-thick-white.png', side: 'left' },
+    ];
+    const rightEl = document.getElementById('bgIlluRight');
+    const leftEl = document.getElementById('bgIlluLeft');
+    if (!rightEl || !leftEl) return;
+
+    function build() {
+      rightEl.innerHTML = '';
+      leftEl.innerHTML = '';
+      const approxSlotHeight = window.innerWidth >= 1280 ? 288 : 224; // matches h-56 / xl:h-72
+      const targetHeight = document.body.scrollHeight * 1.1; // small buffer
+      const cycles = Math.max(1, Math.ceil(targetHeight / (SEQUENCE.length * approxSlotHeight)));
+
+      for (let c = 0; c < cycles; c++) {
+        SEQUENCE.forEach(({ file, side }) => {
+          const img = document.createElement('img');
+          img.src = `images/illustrations/types/${file}`;
+          img.className = SLOT_CLASS;
+          const spacer = document.createElement('div');
+          spacer.className = 'h-56 xl:h-72 shrink-0';
+          if (side === 'right') {
+            rightEl.appendChild(img);
+            leftEl.appendChild(spacer);
+          } else {
+            rightEl.appendChild(spacer);
+            leftEl.appendChild(img);
+          }
+        });
+      }
+    }
+
+    build();
+    window.addEventListener('load', build);
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(build, 300);
+    });
+  })();
 </script>
 
 </body>

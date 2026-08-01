@@ -1,7 +1,7 @@
 {
-  "lastProcessedDate": "2026-07-31",
-  "lastInstagramPost": "https://www.instagram.com/p/DbcKyiEJyOf/",
-  "heroSlug": "plant41",
+  "lastProcessedDate": "2026-08-01",
+  "lastInstagramPost": "https://www.instagram.com/p/Dbe7UM7JQGM/",
+  "heroSlug": "plant42",
   "photos": [
     { "slug": "plant03", "source": "IMG_20260730_125007.jpg" },
     { "slug": "plant04", "source": "IMG_20260730_125022.jpg" },
@@ -36,7 +36,8 @@
     { "slug": "plant33", "source": "IMG_20260730_125536.jpg" },
     { "slug": "plant34", "source": "IMG_20260730_125619.jpg" },
     { "slug": "plant40", "source": "IMG_20260730_132441.jpg" },
-    { "slug": "plant41", "source": "IMG_20260731_105650.jpg" }
+    { "slug": "plant41", "source": "IMG_20260731_105650.jpg" },
+    { "slug": "plant42", "source": "IMG_20260801_120743.jpg" }
   ],
   "excludedSources": [
     "IMG_20260730_102042.jpg",
