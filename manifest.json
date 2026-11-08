@@ -1,7 +1,7 @@
 {
-  "lastProcessedDate": "2026-11-06",
-  "lastInstagramPost": "https://www.instagram.com/p/DfYY1J7J1RF/",
-  "heroSlug": "plant66",
+  "lastProcessedDate": "2026-11-08",
+  "lastInstagramPost": "https://www.instagram.com/p/DfdsXQFpaPi/",
+  "heroSlug": "plant67",
   "photos": [
     {
       "slug": "plant03",
@@ -238,6 +238,10 @@
     {
       "slug": "plant66",
       "source": "IMG_20261106_095536.jpg"
+    },
+    {
+      "slug": "plant67",
+      "source": "IMG_20261108_111627.jpg"
     }
   ],
   "excludedSources": [
